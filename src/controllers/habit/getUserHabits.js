@@ -1,12 +1,15 @@
 const UserModel = require("../../models/user.model.js");
-async function getAllUsers() {
-  return await UserModel.find({});
+const HabitModel = require("../../models/habit.model.js");
+
+async function getUserHabits(object) {
+  const habits = await HabitModel.find(object);
+  return habits;
 }
 
 async function router(req, res) {
   try {
-    const users = await getAllUsers();
-    res.status(200).send(users);
+    const habits = await getUserHabits(req.params);
+    res.status(201).send(habits);
   } catch (err) {
     console.log(err)
     res.status(500).send({
@@ -17,6 +20,6 @@ async function router(req, res) {
 }
 
 module.exports = {
-  getAllUsers,
+  getUserHabits,
   router,
 };
