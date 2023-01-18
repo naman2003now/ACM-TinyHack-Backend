@@ -18,7 +18,7 @@ class App {
 
   initilizeHomeRoute() {
     this.app.get("/", (req, res) => {
-      res.send("Welcome to Habit Tracker");
+      res.send("Welcome to Habit Tracker API");
     });
   }
 
