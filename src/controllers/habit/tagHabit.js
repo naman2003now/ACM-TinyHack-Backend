@@ -1,15 +1,17 @@
-const UserModel = require("../../models/user.model.js");
 const HabitModel = require("../../models/habit.model.js");
 
-async function getUserHabits(object) {
-  const habits = await HabitModel.find(object);
+async function tagHabit(object) {
+  const habits = await HabitModel.findOne(object);
+  const today = Math.floor(Date.now()/(3600*24*1000))
+  habits.tags.push(today)
+  await habits.save()
   return habits;
 }
 
 async function router(req, res) {
   try {
-    const habits = await getUserHabits(req.params);
-    res.status(201).send(habits);
+    const stats = await tagHabit(req.params);
+    res.status(201).send(stats);
   } catch (err) {
     console.log(err);
     res.status(500).send({
@@ -20,6 +22,6 @@ async function router(req, res) {
 }
 
 module.exports = {
-  getUserHabits,
+  tagHabit,
   router,
 };

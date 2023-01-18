@@ -8,7 +8,7 @@ async function router(req, res) {
     const users = await getAllUsers();
     res.status(200).send(users);
   } catch (err) {
-    console.log(err)
+    console.log(err);
     res.status(500).send({
       message: "An Unknown Error Occured",
       error: err,

@@ -10,7 +10,7 @@ async function router(req, res) {
     const habit = await createHabit(req.body);
     res.status(201).send(habit);
   } catch (err) {
-    console.log(err)
+    console.log(err);
     res.status(500).send({
       message: "An Unknown Error Occured",
       error: err,

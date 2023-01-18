@@ -6,7 +6,6 @@ const UserSchemea = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  name: String,
 });
 
 module.exports = mongoose.model("User", UserSchemea);
